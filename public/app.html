@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoViz - The Logic Lens</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Premium Look -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top: Input -->
+        <header class="app-header">
+            <div class="logo-area">
+                <img src="logo.png" alt="AlgoViz Logo" class="logo-img">
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <h1>AlgoViz</h1>
+                    <span
+                        style="font-size: 0.75rem; color: var(--primary); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">The
+                        Logic Lens</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="promptInput"
+                    placeholder="Describe it naturally... e.g., 'Visualize Bubble Sort step-by-step' or 'Show concept of Bernoulli'">
+                <button id="voiceBtn" class="icon-btn" title="Voice Input">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                </button>
+                <button id="generateBtn" class="primary-btn">Generate</button>
+            </div>
+
+            <div class="selectors-group">
+                <select id="languageSelect" class="styled-select" title="Programming Language">
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="javascript">JavaScript</option>
+                </select>
+                <select id="levelSelect" class="styled-select" title="Skill Level">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+            <button id="browseLibBtn"
+                style="margin-left: 1rem; padding: 0.6rem 1.2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; border-radius: 10px; font-weight: 600; cursor: pointer;">📚
+                Browse Library</button>
+            <a href="/dashboard" class="sm-btn" style="text-decoration: none; margin-left: 1rem;">Back to Dashboard</a>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left: JSON / Code / Breakdown -->
+            <section class="panel left-panel">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="breakdown">Steps</button>
+                    <button class="tab-btn" data-tab="code">Code</button>
+                    <button class="tab-btn" data-tab="json">JSON</button>
+                </div>
+
+                <!-- Breakdown Tab -->
+                <div id="tab-breakdown" class="tab-content active">
+                    <div class="panel-header">
+                        <h2>Animation Steps</h2>
+                        <div class="toggle-wrapper">
+                            <span>Narrator</span>
+                            <label class="switch">
+                                <input type="checkbox" id="narratorToggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="breakdownList" class="breakdown-list">
+                        <div class="empty-state">Generate a scene to see steps.</div>
+                    </div>
+                </div>
+
+                <!-- Code Tab -->
+                <div id="tab-code" class="tab-content" style="padding: 0; background: #0D0B12;">
+                    <div id="codeViewer" class="code-container">
+                        <!-- Code lines will be injected here -->
+                    </div>
+                </div>
+
+                <!-- JSON Tab -->
+                <div id="tab-json" class="tab-content">
+                    <div class="panel-header">
+                        <h2>Scene JSON</h2>
+                        <button id="applyJsonBtn" class="sm-btn">Apply</button>
+                    </div>
+                    <textarea id="jsonEditor" spellcheck="false"></textarea>
+                </div>
+            </section>
+
+            <!-- Right: Canvas Preview -->
+            <section class="panel right-panel">
+                <div class="panel-header">
+                    <h2>Live Preview</h2>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button id="fullscreenBtn" class="icon-btn" title="Full Screen" style="padding: 4px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                                </path>
+                            </svg>
+                        </button>
+                        <div id="statusIndicator" class="status-ready">Ready</div>
+                    </div>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="previewCanvas" width="800" height="450"></canvas>
+                    <div id="loadingOverlay" class="hidden">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom: Controls -->
+        <footer class="bottom-controls">
+            <div class="playback-controls">
+                <button id="resetBtn" class="control-btn">⏮ Reset</button>
+                <button id="playPauseBtn" class="control-btn">▶ Play</button>
+                <div class="speed-control-wrapper"
+                    style="display: flex; align-items: center; gap: 5px; margin: 0 10px;">
+                    <label for="speedRange" style="font-size: 0.8rem; color: var(--text-muted);">Speed:</label>
+                    <input type="range" id="speedRange" min="0.5" max="3.0" value="1.0" step="0.5" style="width: 80px;">
+                    <span id="speedDisplay"
+                        style="font-size: 0.8rem; color: var(--text-color); min-width: 30px;">1.0x</span>
+                </div>
+                <input type="range" id="timelineScrub" min="0" max="100" value="0" step="0.1">
+                <span id="timeDisplay">0.0s / 0.0s</span>
+            </div>
+            <div class="export-controls">
+                <button id="exportBtn" class="accent-btn">Export Video</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="toast hidden">
+        <span id="errorMessage">Error message</span>
+        <button onclick="this.parentElement.classList.add('hidden')">✕</button>
+    </div>
+
+    <!-- Browse Library Overlay -->
+    <div id="libraryOverlay" class="library-overlay hidden">
+        <div class="library-container">
+            <div class="library-header">
+                <h2>Browse Algorithm Library</h2>
+                <button id="closeLibraryBtn" class="close-btn" title="Close (ESC)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="library-controls">
+                <input type="text" id="librarySearch" class="library-search" placeholder="Search algorithms...">
+                <div class="domain-filters" id="domainFilters">
+                    <button class="filter-btn active" data-domain="all">All</button>
+                    <button class="filter-btn" data-domain="Data Structures & Algorithms">DSA</button>
+                    <button class="filter-btn" data-domain="Mathematics">Math</button>
+                    <button class="filter-btn" data-domain="Physics">Physics</button>
+                    <button class="filter-btn" data-domain="Biology">Biology</button>
+                    <button class="filter-btn" data-domain="AI / Machine Learning">AI/ML</button>
+                </div>
+            </div>
+
+            <div class="library-content" id="libraryContent">
+                <!-- Topic cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Browse Library Modal -->
+    <div id="libModal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; overflow-y:auto;">
+        <div style="max-width:1000px; margin:50px auto; background:#1e1c29; border-radius:20px; padding:2rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+                <h2 style="color:#667eea; margin:0;">📚 Browse All Topics</h2>
+                <button id="closeLibBtn"
+                    style="background:transparent; border:none; color:white; font-size:2rem; cursor:pointer;">×</button>
+            </div>
+            <input type="text" id="libSearch" placeholder="Search topics..."
+                style="width:100%; padding:0.8rem; margin-bottom:1.5rem; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:8px; color:white; font-size:1rem;">
+            <div id="libList"
+                style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:1rem;"></div>
+        </div>
+    </div>
+
+    <script src="browse-library.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

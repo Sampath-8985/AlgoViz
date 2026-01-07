@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials - AlgoViz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .tutorial-section {
+            margin-bottom: 3rem;
+        }
+
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .tutorial-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Animated Background Elements for Cards */
+        .card-bg-anim {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tutorial-card:hover .card-bg-anim {
+            opacity: 0.1;
+        }
+
+        /* Geometry Animation */
+        .anim-geo {
+            background: conic-gradient(from 0deg, transparent, var(--accent), transparent);
+            animation: rotate 4s linear infinite;
+        }
+
+        /* Math Animation */
+        .anim-math {
+            background: linear-gradient(45deg, transparent 45%, var(--primary) 50%, transparent 55%);
+            background-size: 200% 200%;
+            animation: flow 3s ease infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            margin-top: 1rem;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-card:hover .code-block {
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateX(5px);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-geo {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        .badge-math {
+            background: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .badge-sci {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        .badge-algo {
+            background: rgba(155, 89, 182, 0.2);
+            color: #9b59b6;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="app-container">
+        <nav class="top-bar" style="justify-content: space-between; z-index: 10;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="/dashboard" class="sm-btn"
+                    style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Back to Dashboard
+                </a>
+                <h1>Interactive Tutorials</h1>
+            </div>
+        </nav>
+
+        <div class="main-content" style="display: block; overflow-y: auto; padding-bottom: 4rem;">
+            <div class="dashboard-container">
+
+                <!-- Header -->
+                <div class="dashboard-header animate-slide-up">
+                    <h2
+                        style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(to right, #fff, #a5b3ce); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Master the Generator
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">
+                        Hover over cards to see animation previews. Use these prompts to generate your own videos.
+                    </p>
+                </div>
+
+                <!-- 1. Geometry -->
+                <div class="tutorial-section animate-slide-up delay-1">
+                    <h3 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                        Geometric Shapes</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-geo">Geometry</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Regular Polygons</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Generate any regular polygon by
+                                    specifying the number of sides. The engine calculates vertices automatically.</p>
+                                <div class="code-block">"Polygon 5"</div>
+                                <div class="code-block">"12-gon"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-geo">Geometry</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Standard Shapes</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Use common names for standard
+                                    shapes. Includes animations for properties.</p>
+                                <div class="code-block">"Triangle"</div>
+                                <div class="code-block">"Square"</div>
+                                <div class="code-block">"Hexagon"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-geo">Geometry</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Visual Proofs</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Visualize geometric theorems
+                                    with step-by-step animations.</p>
+                                <div class="code-block">"Pythagoras Theorem"</div>
+                                <div class="code-block">"Circle Area"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Mathematics -->
+                <div class="tutorial-section animate-slide-up delay-2">
+                    <h3 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                        Mathematical Formulas & Graphs</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-math">Math</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Function Plotting</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Plot mathematical functions on a
+                                    coordinate system. Supports trig, log, exp, etc.</p>
+                                <div class="code-block">"Graph sin(x)"</div>
+                                <div class="code-block">"Plot x^2"</div>
+                                <div class="code-block">"Graph sigmoid"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-math">Math</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Derivations</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Step-by-step derivation of
+                                    calculus rules with text highlighting.</p>
+                                <div class="code-block">"Derivation Power Rule"</div>
+                                <div class="code-block">"Chain Rule"</div>
+                                <div class="code-block">"Limit Calculus"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-math">Math</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Vectors</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Visualize vector operations like
+                                    addition, dot product, and cross product.</p>
+                                <div class="code-block">"Vector Addition"</div>
+                                <div class="code-block">"Cross Product"</div>
+                                <div class="code-block">"Random Vector"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Science -->
+                <div class="tutorial-section animate-slide-up delay-3">
+                    <h3 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                        Scientific Models</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-sci">Science</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Atomic Models</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Generate Bohr models for
+                                    elements with orbiting electrons.</p>
+                                <div class="code-block">"Atom 6" (Carbon)</div>
+                                <div class="code-block">"Element 1" (Hydrogen)</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-sci">Science</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Biology</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Visualize biological processes
+                                    like DNA replication and Mitosis.</p>
+                                <div class="code-block">"DNA Helix"</div>
+                                <div class="code-block">"Mitosis"</div>
+                                <div class="code-block">"Photosynthesis"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-geo"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-sci">Science</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Physics & Space</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Simulate physical systems and
+                                    planetary motion.</p>
+                                <div class="code-block">"Solar System"</div>
+                                <div class="code-block">"Water Cycle"</div>
+                                <div class="code-block">"Electrolysis"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Algorithms -->
+                <div class="tutorial-section animate-slide-up delay-3">
+                    <h3 style="color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                        Algorithms & Data Structures</h3>
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-algo">Algorithms</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Sorting</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Visualize sorting algorithms
+                                    with step-by-step swaps.</p>
+                                <div class="code-block">"Bubble Sort"</div>
+                                <div class="code-block">"Merge Sort"</div>
+                                <div class="code-block">"Selection Sort"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-algo">Algorithms</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Search & Graph</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Pathfinding and search
+                                    visualizations.</p>
+                                <div class="code-block">"Binary Search"</div>
+                                <div class="code-block">"BFS Graph"</div>
+                            </div>
+                        </div>
+                        <div class="tutorial-card">
+                            <div class="card-bg-anim anim-math"></div>
+                            <div class="card-content">
+                                <span class="category-badge badge-algo">Algorithms</span>
+                                <h4 style="color: white; margin: 0 0 0.5rem 0;">Data Structures</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Visualize stacks, queues, and
+                                    more.</p>
+                                <div class="code-block">"Stack Operations"</div>
+                                <div class="code-block">"Queue Operations"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blocks = document.querySelectorAll('.code-block');
+            blocks.forEach(block => {
+                block.style.cursor = 'pointer';
+                block.addEventListener('click', () => {
+                    // Remove quotes if present
+                    let text = block.textContent.trim();
+                    if (text.startsWith('"') && text.endsWith('"')) {
+                        text = text.slice(1, -1);
+                    } else if (text.includes('"')) {
+                        // Handle cases like '"Atom 6" (Carbon)'
+                        const match = text.match(/"([^"]+)"/);
+                        if (match) text = match[1];
+                    }
+
+                    // Redirect to app with prompt
+                    window.location.href = `/app?prompt=${encodeURIComponent(text)}`;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

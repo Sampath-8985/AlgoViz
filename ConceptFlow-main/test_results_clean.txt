@@ -1,0 +1,70 @@
+Testing 66 topics...
+
+[PASS] triangle
+[PASS] square
+[PASS] pentagon
+[PASS] hexagon
+[PASS] polygon 8
+[PASS] atom 1
+[PASS] element 6
+[PASS] graph sin(x)
+[PASS] plot quadratic
+[PASS] graph linear
+[PASS] Newton's Laws
+[PASS] Friction
+[PASS] Work Energy Principle
+[PASS] Solar System
+[PASS] Life Cycle of Star
+[PASS] Carbon Cycle
+[PASS] Nitrogen Cycle
+[PASS] Greenhouse Effect
+[PASS] Global Warming
+[PASS] Water Cycle
+[PASS] Photosynthesis
+[PASS] Respiration
+[PASS] Digestive System
+[PASS] Human Heart
+[PASS] Nervous System
+[PASS] Electricity Basics
+[PASS] Ohm's Law
+[PASS] Reflection Refraction
+[PASS] Sound Propagation
+[PASS] States of Matter
+[PASS] Force and Pressure
+[PASS] Capillary Action
+[PASS] Schrodinger Equation
+[PASS] Heisenberg Uncertainty
+[PASS] Doppler Effect
+[PASS] Wave Equation
+[PASS] Gravitation
+[PASS] Time Dilation
+[PASS] Bubble sort
+[PASS] Selection sort
+[PASS] Merge sort
+[PASS] Binary search
+[PASS] BFS Graph
+[PASS] Stack operations
+[PASS] Queue operations
+[PASS] Matrix multiplication 3x3
+[PASS] Determinant
+[PASS] Gradient Descent
+[PASS] Fourier Transform
+[PASS] Riemann Sum
+[PASS] Taylor Series
+[PASS] Chain Rule
+[PASS] Integral
+[PASS] Limit
+[PASS] Derivation
+[PASS] Vector addition
+[PASS] Vector subtraction
+[PASS] Cross product
+[PASS] Dot product
+[PASS] Pie chart
+[PASS] Bar race
+[PASS] Scatter plot
+[PASS] DNA Helix
+[PASS] Mitosis
+[PASS] Electrolysis
+[PASS] Full course
+
+Summary: 66 Passed, 0 Failed

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoViz - The Logic Lens</title>
+    <link rel="stylesheet" href="/style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container" style="height: auto; min-height: 100vh;">
+        <nav class="app-header"
+            style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; padding: 0.8rem 1.5rem; background: #13111C; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="/logo.png" alt="AlgoViz Logo" style="height: 32px; width: auto;">
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <h1 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px;">
+                        AlgoViz</h1>
+                    <span
+                        style="font-size: 0.75rem; color: #00d2ff; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">The
+                        Logic Lens</span>
+                </div>
+            </div>
+            <div class="header-actions" style="display: flex !important; gap: 1rem !important;">
+                <a href="/login" class="sm-btn"
+                    style="text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; background: rgba(255, 255, 255, 0.05); color: #8F8F9D; border: 1px solid transparent;">Log
+                    In</a>
+                <a href="/signup" class="primary-btn"
+                    style="text-decoration: none; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; background: #00d2ff; color: #13111C; border: none;">Sign
+                    Up</a>
+            </div>
+        </nav>
+
+        <div class="main-content" style="display: block; overflow: visible; height: auto;">
+            <div class="landing-hero" style="text-align: center; padding-top: 4rem;">
+                <h1 class="hero-title" style="font-size: 3.5rem; margin-bottom: 1.5rem; line-height: 1.2;">
+                    Turn Text into <br>
+                    <span
+                        style="color: var(--primary); background: linear-gradient(to right, #00d2ff, #3a7bd5); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Educational Animations
+                    </span>
+                </h1>
+                <p class="hero-desc"
+                    style="font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem;">
+                    Visualize algorithms, math formulas, and scientific concepts instantly.
+                    Just type what you want to see, and our AI generates a beautiful, narrated animation.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="/signup" class="primary-btn"
+                        style="text-decoration: none; font-size: 1.1rem; padding: 1rem 3rem;">Start Creating for
+                        Free</a>
+                    <a href="/gallery" class="sm-btn"
+                        style="text-decoration: none; font-size: 1.1rem; padding: 1rem 3rem; background: transparent; border: 1px solid var(--glass-border); color: white;">View
+                        Gallery</a>
+                </div>
+
+                <div style="margin-top: 4rem; position: relative;">
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 300px; background: var(--primary); filter: blur(100px); opacity: 0.15; z-index: -1;">
+                    </div>
+                    <!-- Dynamic Hero Visual -->
+                    <div class="hero-visual"
+                        style="position: relative; width: 100%; max-width: 800px; padding: 4rem 2rem; margin: 0 auto; background: rgba(30, 30, 46, 0.5); border-radius: 16px; border: 1px solid var(--glass-border); overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+                        <!-- Grid lines -->
+                        <div
+                            style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 40px 40px; z-index: -1;">
+                        </div>
+
+                        <div style="text-align: center;">
+                            <h3
+                                style="font-size: 2rem; color: #fff; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                                🚀 Built for Modern Learners
+                            </h3>
+                            <p
+                                style="font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                                Whether you're a student, educator, or developer, AlgoViz adapts explanations to your
+                                skill level
+                                and transforms text into meaningful visual learning experiences.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

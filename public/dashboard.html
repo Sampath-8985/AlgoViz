@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AlgoViz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="app-container">
+        <header class="app-header" style="justify-content: space-between; z-index: 10;">
+            <div class="logo-area" style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="/logo.png" alt="AlgoViz Logo" style="height: 32px; width: auto;">
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <h1 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px;">
+                        AlgoViz</h1>
+                    <span
+                        style="font-size: 0.75rem; color: #00d2ff; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">The
+                        Logic Lens</span>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <span id="welcomeUser" style="color: var(--text-muted); font-weight: 500;">Welcome, User</span>
+                <a href="/" class="sm-btn" style="text-decoration: none;"
+                    onclick="localStorage.removeItem('currentUser')">Logout</a>
+            </div>
+        </header>
+
+        <div class="main-content" style="display: block; overflow-y: auto;">
+            <div class="dashboard-container">
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const user = localStorage.getItem('currentUser');
+                        if (user) {
+                            document.getElementById('welcomeUser').textContent = `Welcome, ${user}`;
+                        }
+                    });
+                </script>
+
+                <!-- Welcome Section -->
+                <div class="dashboard-header animate-slide-up">
+                    <h2
+                        style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(to right, #fff, #a5b3ce); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Dashboard</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">Manage your projects and create new
+                        animations.</p>
+                </div>
+
+                <!-- Action Cards -->
+                <div class="dashboard-grid animate-slide-up delay-1"
+                    style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <!-- Create Animations Card -->
+                    <a href="/app" style="text-decoration: none;">
+                        <div class="futuristic-card" style="height: 100%; border-color: var(--primary);">
+                            <div class="card-icon-wrapper" style="background: rgba(52, 152, 219, 0.2);">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)"
+                                    stroke-width="2">
+                                    <path d="M15 10l5 5-5 5" />
+                                    <path d="M4 4v16" />
+                                    <path d="M9 4v16" />
+                                    <path d="M14 4v5" />
+                                </svg>
+                            </div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.6rem;">Create Animations</h3>
+                            <p style="margin: 0; color: var(--text-muted);">Start a new project. Turn text prompts into
+                                stunning educational videos.</p>
+                        </div>
+                    </a>
+
+                    <!-- Tutorials Card -->
+                    <a href="/tutorial" style="text-decoration: none;">
+                        <div class="futuristic-card" style="height: 100%; border-color: var(--accent);">
+                            <div class="card-icon-wrapper" style="background: rgba(231, 76, 60, 0.2);">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+                                    stroke-width="2">
+                                    <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                </svg>
+                            </div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: white; font-size: 1.6rem;">Tutorials</h3>
+                            <p style="margin: 0; color: var(--text-muted);">Learn how to use the tool with interactive
+                                guides and examples.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Last Viewed -->
+                <h3 class="animate-slide-up delay-2" style="margin-bottom: 1.5rem; font-size: 1.5rem;">Last Viewed
+                </h3>
+                <div id="last-viewed-container" class="project-list animate-slide-up delay-3">
+                    <!-- Dynamic Content -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('last-viewed-container');
+            let lastViewed = null;
+            try {
+                lastViewed = JSON.parse(localStorage.getItem('lastViewed'));
+            } catch (e) {
+                console.error("Error parsing lastViewed", e);
+            }
+
+            if (!lastViewed) {
+                container.innerHTML = '<div style="color: var(--text-muted); font-size: 1.1rem; padding: 1rem; border: 1px dashed #444; border-radius: 8px; text-align: center;">No Algorithms viewed yet!</div>';
+                return;
+            }
+
+            const date = new Date(lastViewed.timestamp).toLocaleString();
+
+            const html = `
+                <div class="project-row" id="last-viewed-item">
+                    <div style="display: flex; gap: 1.5rem; align-items: center;">
+                        <div style="width: 80px; height: 50px; background: linear-gradient(135deg, #2c3e50, #34495e); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ecf0f1; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">
+                            ${lastViewed.language}
+                        </div>
+                        <div>
+                            <div style="font-weight: 600; color: white; font-size: 1.1rem; margin-bottom: 0.2rem; text-transform: capitalize;">
+                                ${lastViewed.name}
+                            </div>
+                            <div style="font-size: 0.9rem; color: var(--text-muted);">${date} • <span style="text-transform: capitalize;">${lastViewed.level}</span></div>
+                        </div>
+                    </div>
+                    <div>
+                         <a href="/app?prompt=${encodeURIComponent(lastViewed.name)}&lang=${lastViewed.language}&level=${lastViewed.level}" class="sm-btn" style="text-decoration: none; display: inline-block;">View</a>
+                         <button class="btn-danger" onclick="deleteLastViewed()">Delete</button>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+        });
+
+        function deleteLastViewed() {
+            if (confirm('Are you sure you want to clear the last viewed history?')) {
+                localStorage.removeItem('lastViewed');
+                const element = document.getElementById('last-viewed-item');
+                if (element) {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateX(20px)';
+                    setTimeout(() => {
+                        element.remove();
+                        const container = document.getElementById('last-viewed-container');
+                        if (container) {
+                            container.innerHTML = '<div style="color: var(--text-muted); font-size: 1.1rem; padding: 1rem; border: 1px dashed #444; border-radius: 8px; text-align: center;">No Algorithms viewed yet!</div>';
+                        }
+                    }, 300);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

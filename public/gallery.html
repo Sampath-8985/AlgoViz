@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - AlgoViz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .gallery-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-quote {
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div class="app-container">
+        <header class="app-header" style="justify-content: space-between; z-index: 10;">
+            <div class="logo-area" style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="/logo.png" alt="AlgoViz Logo" style="height: 32px; width: auto;">
+                <div style="display: flex; flex-direction: column; line-height: 1;">
+                    <h1 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px;">
+                        AlgoViz</h1>
+                    <span
+                        style="font-size: 0.75rem; color: #00d2ff; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;">The
+                        Logic Lens</span>
+                </div>
+            </div>
+            <div>
+                <a href="/" class="sm-btn" style="text-decoration: none;">Back to Home</a>
+            </div>
+        </header>
+
+        <div class="main-content" style="display: block; overflow-y: auto;">
+            <div class="dashboard-container">
+                <div class="dashboard-header animate-slide-up">
+                    <h2
+                        style="font-size: 2.5rem; margin-bottom: 0.5rem; background: linear-gradient(to right, #fff, #a5b3ce); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Visual Gallery</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">Explore the possibilities of algorithmic
+                        visualization.</p>
+                </div>
+
+                <div class="gallery-grid animate-slide-up delay-1">
+                    <div class="gallery-item">
+                        <img src="/gallery1.png" alt="Algorithm Visualization 1" class="gallery-img">
+                        <div class="gallery-content">
+                            <p class="gallery-quote">"Visualize complex structures with clarity and precision."</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/gallery2.png" alt="Algorithm Visualization 2" class="gallery-img">
+                        <div class="gallery-content">
+                            <p class="gallery-quote">"Turn abstract logic into tangible, moving art."</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/gallery3.png" alt="Algorithm Visualization 3" class="gallery-img">
+                        <div class="gallery-content">
+                            <p class="gallery-quote">"See the flow of data as it happens in real-time."</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/gallery4.png" alt="Algorithm Visualization 4" class="gallery-img">
+                        <div class="gallery-content">
+                            <p class="gallery-quote">"Education reimagined through the lens of dynamic animation."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -40,6 +40,8 @@ As a result, learners often **memorize algorithms instead of understanding them*
 
 **AlgoViz bridges the gap between code and comprehension.**
 
+## Designed to help learners build algorithmic intuition — not just memorize code.
+
 It converts algorithm logic into **interactive, visual, and explainable experiences**, enabling learners to:
 - See algorithms execute step by step
 - Visually understand performance growth
@@ -64,12 +66,30 @@ It converts algorithm logic into **interactive, visual, and explainable experien
 - **Rule-Based Engine**: Controls algorithm flow with rules.
 - **Live Preview**: Canvas-based rendering with full playback controls.
 
-## 🛠 Tech Stack
+## 🧰 Tech Stack
 
-- **Frontend**: HTML5, CSS3 (Variables, Flexbox), Vanilla JavaScript (ES6). No frameworks.
-- **Backend**: Python 3, Flask.
-- **Rendering**: HTML5 Canvas API.
+## 🔹 Core Languages 
 
+**Frontend**: React.js, Tailwind CSS
+**Backend & API Layer**: Python (Flask) for algorithm & AI services, Node.js + Express.js for orchestration and integration APIs
+**AI & Algorithm Logic**: Python
+**Database**: Firebase Firestore
+**Authentication**: Firebase Authentication
+**File Storage**: Firebase Cloud Storage
+**AI APIs**: Google AI Studio
+**Rendering**: HTML5 Canvas API.
+**Version Control**: Git & GitHub
+
+🧠 Python is the primary language to support algorithm simulation, AI reasoning, and educational computation accuracy.
+
+## 🚀 Launch & Live Experience
+
+AlgoViz is fully cloud-native, delivering a smooth and intelligent learning experience from anywhere in the world:
+
+- 🚀 **Instant Frontend Delivery:** Hosted on **Vercel**, ensuring blazing-fast loads and responsive interactions.
+- 🔧 **Serverless Backend Power:** APIs run on **Vercel Serverless** and **Firebase Functions**, scaling automatically with usage.
+- 🔒 **Secure & Real-Time Data:** **Firebase Firestore** and **Authentication** handle data persistence and user security.
+- 🤖 **AI-Driven Intelligence:** **Google AI Studio** fuels smart algorithm insights, explanations, and code generation.
 
 ## 🎥 Video Export
 
@@ -88,6 +108,13 @@ It converts algorithm logic into **interactive, visual, and explainable experien
 - Time Complexity Intuition Builder
 - Logic Compression Replay
 - Mistake Simulator
+
+## 📁 Repository Structure
+
+/frontend   → React + Tailwind UI  
+/backend    → API & orchestration layer  
+/engine     → Python algorithm & AI logic  
+
 
 ## 🧑‍💻 *Developed By*
 

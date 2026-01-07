@@ -70,15 +70,15 @@ It converts algorithm logic into **interactive, visual, and explainable experien
 
 ## 🔹 Core Languages 
 
-**Frontend**: React.js, Tailwind CSS
-**Backend & API Layer**: Python (Flask) for algorithm & AI services, Node.js + Express.js for orchestration and integration APIs
-**AI & Algorithm Logic**: Python
-**Database**: Firebase Firestore
-**Authentication**: Firebase Authentication
-**File Storage**: Firebase Cloud Storage
-**AI APIs**: Google AI Studio
-**Rendering**: HTML5 Canvas API.
-**Version Control**: Git & GitHub
+- **Frontend**: React.js, Tailwind CSS.
+- **Backend & API Layer**: Python (Flask) for algorithm & AI services, Node.js + Express.js for orchestration and integration APIs.
+- **AI & Algorithm Logic**: Python.
+- **Database**: Firebase Firestore.
+- **Authentication**: Firebase Authentication.
+- **File Storage**: Firebase Cloud Storage.
+- **AI APIs**: Google AI Studio.
+- **Rendering**: HTML5 Canvas API.
+- **Version Control**: Git & GitHub.
 
 🧠 Python is the primary language to support algorithm simulation, AI reasoning, and educational computation accuracy.
 

@@ -115,7 +115,6 @@ AlgoViz is fully cloud-native, delivering a smooth and intelligent learning expe
 /backend    → API & orchestration layer  
 /engine     → Python algorithm & AI logic  
 
-
 ## 🧑‍💻 *Developed By*
 
 ### *Team Innovexa*
